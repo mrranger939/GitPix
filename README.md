@@ -7,6 +7,10 @@
 http://localhost:3000/
 ```
 
+```
+https://git-pix.vercel.app/
+```
+
 ---
 
 ## Upload Image
