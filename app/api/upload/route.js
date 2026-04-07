@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { v4 as uuidv4 } from "uuid";
 
 export async function POST(req) {
   try {
@@ -17,8 +18,9 @@ export async function POST(req) {
     if (!fileName.match(/\.(png|jpg|jpeg|webp)$/)) {
       return NextResponse.json({ error: "Invalid file type" }, { status: 400 });
     }
-
-    const uniqueName = `${Date.now()}-${fileName}`;
+    
+    const extension = fileName.split(".").pop();
+    const uniqueName = `${uuidv4()}.${extension}`;
 
     const githubRes = await fetch(
       `https://api.github.com/repos/${process.env.REPO}/contents/images/${uniqueName}`,
