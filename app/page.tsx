@@ -163,7 +163,7 @@ export default function ImageUploader() {
               </svg>
             </div>
             <span className="text-white font-semibold text-lg tracking-tight" style={{ fontFamily: "'Sora', sans-serif", letterSpacing: "-0.02em" }}>
-              Vault Upload
+              GitPix
             </span>
           </div>
           <p className="text-xs" style={{ color: "rgba(255,255,255,0.35)", fontFamily: "'Sora', sans-serif" }}>
