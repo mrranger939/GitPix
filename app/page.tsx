@@ -149,7 +149,7 @@ export default function ImageUploader() {
         {/* Header */}
         <div className="mb-8">
           <div className="flex items-center gap-3 mb-2">
-            <div
+            {/* <div
               className="w-9 h-9 rounded-xl flex items-center justify-center"
               style={{
                 background: "linear-gradient(135deg, rgba(139,92,246,0.7), rgba(59,130,246,0.7))",
@@ -161,7 +161,12 @@ export default function ImageUploader() {
                 <line x1="12" y1="12" x2="12" y2="21" />
                 <path d="M20.39 18.39A5 5 0 0018 9h-1.26A8 8 0 103 16.3" />
               </svg>
-            </div>
+            </div> */}
+            <img
+              src="/gitpix-logo.png"
+              alt="GitPix Logo"
+              className="w-11 h-11 object-contain"
+            />
             <span className="text-white font-semibold text-lg tracking-tight" style={{ fontFamily: "'Sora', sans-serif", letterSpacing: "-0.02em" }}>
               GitPix
             </span>
