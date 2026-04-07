@@ -1,36 +1,96 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-## Getting Started
+## API Documentation
 
-First, run the development server:
+### Base URL
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+```
+http://localhost:3000/
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Upload Image
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Uploads an image to the repository and returns a publicly accessible URL.
 
-## Learn More
+### Endpoint
 
-To learn more about Next.js, take a look at the following resources:
+```
+POST /api/upload
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Request Body
 
-## Deploy on Vercel
+```json
+{
+  "imageBase64": "string",
+  "fileName": "string",
+  "password": "string"
+}
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Parameters
+
+| Field       | Type   | Required | Description                                           |
+| ----------- | ------ | -------- | ----------------------------------------------------- |
+| imageBase64 | string | Yes      | Base64-encoded image string (without data URI prefix) |
+| fileName    | string | Yes      | Original file name including extension                |
+| password    | string | Yes      | Application password for authentication               |
+
+---
+
+### Example Request
+
+```bash
+curl -X POST http://localhost:3000/api/upload \
+  -H "Content-Type: application/json" \
+  -d '{
+    "imageBase64": "<base64_string>",
+    "fileName": "image.png",
+    "password": "your_password"
+  }'
+```
+
+---
+
+### Success Response
+
+```json
+{
+  "url": "https://raw.githubusercontent.com/<user>/<repo>/main/images/<file>"
+}
+```
+
+---
+
+### Error Responses
+
+#### Unauthorized
+
+```json
+{
+  "error": "Unauthorized"
+}
+```
+
+#### Bad Request
+
+```json
+{
+  "error": "Missing fields"
+}
+```
+
+#### Upload Failure
+
+```json
+{
+  "error": "GitHub upload failed"
+}
+```
+
+---
